@@ -67,13 +67,13 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
     - required to work with JUnit5
 
 ## Testcases
-### Sum
-Case 1: positive + positive
+### checkIfUrlValid(String url)
+Case 1: URL is valid
 ```
-4 + 3
+"https://github.com/dduh96/tdd-bookmark-group10/branches"
 expected: 7
 ```
-Case 2: positive + negative
+Case 2: URL is not valid
  ```
 4 + -3
 expected: 1
