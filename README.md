@@ -67,7 +67,7 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
     - required to work with JUnit5
 
 ## Testcases
-### checkIfDuplicate(Bookmark bookmark)
+### checkIfNotDuplicate(Bookmark bookmark)
 Case 1: Is Duplicate
 ```
 Bookmark List contains: "https://www.google.com"
@@ -178,7 +178,7 @@ expected: true
 #
 ### addBookmark(String url)
 ###### tries to add a new Bookmark, if successful it returns the created object
-Case 1: is successful
+Case 1: URL does not already exist, is successful
 ```
 Bookmarklist does not contain URL 
 URL = "https://github.com/"
@@ -203,7 +203,7 @@ expected: NULL
 Case 4: URL is invalid
 ```
 Bookmarklist does not contain URL 
-URL = NULL
+URL = "hello, world!"
 
 expected: NULL
 ```
