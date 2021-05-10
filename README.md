@@ -1,3 +1,4 @@
+# THIS REPO IS DEPRECATED - bookmarking tool in the tdd-group10 repo!
 # TDD Basic Example
 
 This project shows a basic TDD example with some of the most common annotations.
