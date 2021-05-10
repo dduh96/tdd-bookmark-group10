@@ -11,12 +11,6 @@ public class Bookmark {
         rating = 1;
     }
 
-    public Bookmark(String url, String keyword){
-        this.url = url;
-        this.keyword = keyword;
-        rating = 1;
-    }
-
 
     public String getUrl() {
         return url;

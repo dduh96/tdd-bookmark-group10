@@ -67,199 +67,143 @@ mvn test jacoco:report org.pitest:pitest-maven:mutationCoverage -DhistoryInputFi
     - required to work with JUnit5
 
 ## Testcases
+### checkIfDuplicate(Bookmark bookmark)
+Case 1: Is Duplicate
+```
+Bookmark List contains: "https://www.google.com"
+new Bookmark URL = "https://www.google.com"
+
+expected: false
+
+```
+Case 2: Is not Duplicate
+ ```
+Bookmark List does not contain: "https://www.google.com"
+new Bookmark URL = "https://www.google.com"
+
+expected: true
+ ```
+Case 3: Is NULL
+ ```
+URL = NULL
+
+expected false
+ ```
+#
 ### checkIfUrlValid(String url)
-Case 1: URL is valid
+###### only checks syntax of URL string, not if website exists
+
+Case 1: URL is not valid
 ```
-"https://github.com/dduh96/tdd-bookmark-group10/branches"
-expected: 7
+URL = "hello, world!"
+expected: false
+
 ```
-Case 2: URL is not valid
+Case 2: URL is valid
  ```
-4 + -3
-expected: 1
+URL = "https://www.google.com"
+expected: true
  ```
-Case 3: negative + positive
+
+Case 3: String is NULL
  ```
--4 + 3
-expected: -1
+URL = null
+expected: false
  ```
-Case 4: negative + negative
-```
--4 + -3
-expected: -7
-```
-Case 5: positive + 0
-   ```
-   4 + 0
-   expected: 4
-   ```
-Case 6: 0 + positive
-```
-0 + 3
-expected: 3
-```
-Case 7: negative + 0
-```
--4 + 0
-expected: -4
-```
-Case 8: 0 + negative
-```
-0 + -3
-expected: -3
-```
 
 
 
 #
-### Subtract
-Case 1: positive - positive
-```
-4 - 3
-expected: 1
-```
-Case 2: positive - negative
- ```
-4 - -3
-expected: 7
- ```
-Case 3: negative - positive
- ```
--4 - 3
-expected: -7
- ```
-Case 4: negative - negative
-```
--4 - -3
-expected: -1
-```
-Case 5: positive - 0
-```
-4 - 0
-expected: 4
-```
-Case 6: 0 - positive
-```
-0 - 3
-expected: -3
-```
-Case 7: negative - 0
-```
--4 - 0
-expected: -4
-```
-Case 8: 0 - negative
-```
-0 - -3
-expected: 3
-```
+### addKeywordToUrl(String keyword, String url)
+###### Adds a Keyword to a URL, if the bookmark already has an associated URL it is simply overwritten
 
+Case 1: is successful
+```
+Bookmarklist contains URL
+URL = "https://github.com/"
+keyword = "programming"
 
+expected: true
+```
+Case 2: URL does not exist in Bookmarklist
+ ```
+Bookmarklist does not contain URL
+URL = "https://github.com/"
+keyword = "programming"
 
+expected: false
+ ```
+Case 3: Keyword is NULL
+ ```
+Bookmarklist contains URL
+URL = "https://github.com/"
+keyword = NULL
 
-#
-### Multiply
-Case 1: positive * positive
-```
-4 * 3
-expected: 12
-```
-Case 2: positive * negative
+expected: false
  ```
-4 * -3
-expected: -12
- ```
-Case 3: negative * positive
- ```
--4 * 3
-expected: -12
- ```
-Case 4: negative * negative
+Case 4: URL is NULL
 ```
--4 * -3
-expected: 12
-```
-Case 5: positive * 0
-```
-4 * 0
-expected: 0
-```
-Case 6: 0 * positive
-```
-0 * 3
-expected: 0
-```
-Case 7: negative * 0
-```
--4 * 0
-expected: 0
-```
-Case 8: 0 * negative
-```
-0 * -3
-expected: 0
-```
+Bookmarklist contains URL
+URL = NULL
+keyword = "programming"
 
+expected: false
+```
+Case 5: Keyword and URL is NULL
+```
+Bookmarklist contains URL
+URL = NULL
+keyword = NULL
+
+expected: true
+```
+Case 6: Bookmark has already associated Keyword
+```
+Bookmarklist contains URL with keyword "work"
+URL = "https://github.com/"
+keyword = "programming"
+
+expected: true
+```
+Case 7: Testing Case Sensitivity
+```
+Bookmarklist contains URL with keyword "Programming"
+URL = "https://github.com/"
+keyword = "programming"
+
+expected: true
+```
 
 
 #
-### Divide
-###### Assumption: Java compiler cuts off Integers at decimal point without rounding 
-Case 1: positive / positive
+### addBookmark(String url)
+###### tries to add a new Bookmark, if successful it returns the created object
+Case 1: is successful
 ```
-8 / 3
-expected: 2
-```
-Case 2: positive / negative
- ```
-8 / -3
-expected: -2
- ```
-Case 3: negative / positive
- ```
--8 / 3
-expected: -2
- ```
-Case 4: negative / negative
-```
--8 / -3
-expected: 2
-```
-Case 5: positive / 0
-```
-8 / 0
-expected: error
-```
-Case 6: 0 / positive
-```
-0 / 3
-expected: 0
-```
-Case 7: negative / 0
-```
--8 / 0
-expected: error
-```
-Case 8: 0 / negative
-```
-0 / -3
-expected: 0
-```
+Bookmarklist does not contain URL 
+URL = "https://github.com/"
 
-#
-### Factorial
-Case 1: positive
+expected: Bookmark("https://github.com/", "", 1)
 ```
-3!
-expected: 6
+Case 2: URL already exists
+ ```
+Bookmarklist does contain URL 
+URL = "https://github.com/"
+(increases rating)
+
+expected: Bookmark("https://github.com/", "", 2)
+ ```
+Case 3: URL is NULL
+ ```
+Bookmarklist does not contain URL 
+URL = NULL
+
+expected: NULL
+ ```
+Case 4: URL is invalid
 ```
-Case 2: negative
- ```
--3!
-expected: 1
- ```
-Case 3: 0
- ```
-0!
-expected: 1
- ```
+Bookmarklist does not contain URL 
+URL = NULL
+
+expected: NULL
+```

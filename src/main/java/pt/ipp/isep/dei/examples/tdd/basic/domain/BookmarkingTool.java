@@ -6,8 +6,8 @@ import java.util.List;
 public class BookmarkingTool {
     private List<Bookmark> savedBookmarks;
 
-    public boolean addBookmark(Bookmark bookmark){
-        return true;
+    public Bookmark addBookmark(String url){
+        return null;
     }
 
     public boolean addKeywordToUrl(String keyword, String url){
