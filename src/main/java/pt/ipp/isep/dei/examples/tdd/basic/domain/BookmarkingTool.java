@@ -1,5 +1,10 @@
 package pt.ipp.isep.dei.examples.tdd.basic.domain;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +21,22 @@ public class BookmarkingTool {
     }
 
     public boolean checkIfUrlValid(String url){
+        try{
+            new URL(url).toURI();
+        }catch (Exception e){
+            return false;
+        }
         return true;
+
     }
 
     public boolean checkIfNotDuplicate(String url){
-        return true;
+        if(url==null) return false;
+        boolean isNotDuplicate = true;
+        while(isNotDuplicate && savedBookmarks.iterator().hasNext()){
+            if (savedBookmarks.iterator().next().getUrl().equals(url)) isNotDuplicate = false;
+        }
+        return isNotDuplicate;
     }
 
 
